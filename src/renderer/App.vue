@@ -1,0 +1,46 @@
+<template>
+  <div id="app" class="app df">
+    <router-view></router-view>
+  </div>
+</template>
+
+<script>
+  import $ from 'jquery'
+  import 'bootstrap/dist/css/bootstrap.min.css'
+  import 'open-iconic/font/css/open-iconic-bootstrap.min.css'
+  export default {
+    name: 'my-project'
+  }
+  $(a => {
+    $(window).on('resize', b => {
+      document.querySelector('#app').style.height = window.innerHeight + 'px'
+    }).resize()
+  })
+</script>
+
+<style>
+  ::selection {color:#FFFFFF;background-color:#C2300B;text-shadow:none}
+  ::-webkit-scrollbar-track-piece {background-color: #fff;border-radius: 6px}
+  ::-webkit-scrollbar{width: 6px;height: 6px}
+  ::-webkit-scrollbar-thumb {height: 40px;background:#999;border-radius:6px}
+  ::-webkit-input-placeholder {color:#bbb}
+  .t,.t *{transition: all 0.3s;-moz-transition: all 0.3s;-webkit-transition: all 0.3s;-o-transition: all 0.3s}
+  .t-1,.t-1 *{transition: all 1s;-moz-transition: all 1s;-webkit-transition: all 1s;-o-transition: all 1s}
+  .t-2,.t-2 *{transition: all 2s;-moz-transition: all 2s;-webkit-transition: all 2s;-o-transition: all 2s}
+  .cp{cursor:pointer}.cd{cursor:default}.cm{cursor:move}
+  .db{display:block}.dib{display:inline-block}.dt{display:table}.di{display:inline}.df{display:-webkit-flex;display:flex}.dtc{display:table-cell}.dif{display: inline-flex}.dn{display:none !important}
+  .fl{float:left}.fr{float:right}.fn{float:none}
+  .tl{text-align:left}.tc{text-align:center}.tr{text-align:right}
+  .pr{position:relative}.pf{position:fixed}.pa{position:absolute}.ps{position:static}
+  .ofh{overflow:hidden}
+  a:focus, a:hover{text-decoration: none}
+  .clear::after{clear:both;display:block}
+  .noresize{resize: none}
+  input[type=file]{border:0}
+
+  #app{
+    justify-content:center;
+    align-items:center;
+    overflow: hidden;
+  }
+</style>
