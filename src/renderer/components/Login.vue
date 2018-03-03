@@ -198,9 +198,11 @@ export default {
   .captcha-input:focus{
     box-shadow: none;
   }
+  .haventset{
+    overflow: hidden;
+    padding: 0 45px;
+  }
   .hsp{
-    width: 210px;
     background-color: #f33;
-    margin: 0 45px;
   }
 </style>  

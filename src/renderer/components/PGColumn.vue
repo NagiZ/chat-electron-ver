@@ -12,11 +12,19 @@
         </li>
       </ul>
     </div>
+    <div class="menu-bottom">
+      <img :src="getUserInfo.avatar" :alt="getUserInfo.name" class="menu-bottom-avatar">
+      <span>{{getUserInfo.name}}</span>
+      <img src="/" alt="" class="menu-bottom-ops">
+      <img src="/" alt="" class="menu-bottom-ops">
+      <img src="/" alt="" class="menu-bottom-ops">
+    </div>
   </div>
 </template>
 
 <script>
 import $ from 'jquery'
+import {mapGetters} from 'vuex'
 export default {
   name: 'PGCloumn',
   data: () => {
@@ -36,6 +44,11 @@ export default {
     getIn: function () {
       this.$store.dispatch('getInChannel', {obj: this, id: '24'})
     }
+  },
+  computed: {
+    ...mapGetters([
+      'getUserInfo'
+    ])
   }
 }
 </script>
@@ -101,5 +114,26 @@ export default {
   .sub-list-item:hover{
     background-color: #f05;
     box-shadow: 0 0 50px #000;
+  }
+  /*menu-bottom*/
+  .menu-bottom{
+    padding: 3px 5px;
+    border-top: 1px solid #e8e8e8;
+  }
+  .menu-bottom-avatar{
+    width: 58px;
+    border-radius: 29px;
+    border: 2px solid #fff;
+    cursor: pointer;
+  }
+  .menu-bottom-ops{
+    margin-left: 5px;
+    width: 30px;
+    border-radius: 15px;
+    border: 1px solid #fff;
+    cursor: pointer;
+  }
+  .menu-bottom-ops:hover{
+    box-shadow: 0 0 10px #fff;
   }
 </style>

@@ -23,6 +23,18 @@
         </div>
       </div>
     </div>
+    <div class="group-members-banner hidden-xs">
+      <span class="group-member-collapse" @click="togSlideLeft($event)"></span>
+      <div class="group-member-list">
+        <ul class="list-group bg-trans">
+          <li class="list-group-item bg-trans group-member-item bg-trans ti-sm" v-for="(value, key) in gmembers" @click="togSlide($event)">{{key}}
+            <ul class="list-group">
+              <li class="list-group-item sub-list-item font-sm ml-md" v-for="gm in value"><img class="gmavatar" src="#">{{gm}}</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
     <!-- <router-view></router-view> -->
     <div :class="[gui.info_in ? 'infoIn' : 'infoOut', 'userDetail']">
       <div class="avatar">
@@ -54,10 +66,23 @@ export default {
     return {
       users: [{user: 'Nagi'}, {user: 'Nagi'}, {user: 'Nagi'}, {user: 'Nagi'}, {user: 'Nagi'}, {user: 'Nagi'}],
       msgInput: '',
-      imgData: ''
+      imgData: '',
+      gmembers: {
+        '群主': ['Nagi'],
+        '自定义头领': ['Nagi01', 'Nagi02', 'Nagi03'],
+        '成员/在线': ['kotomi01', 'kotomi02', 'kotomi03', 'kotomi04'],
+        '成员/离线': ['miyuki01', 'miyuki02', 'miyuki03', 'miyuki04']
+      }
     }
   },
   methods: {
+    togSlide: function (e) {
+      $(e.target).children('ul').slideToggle()
+    },
+    togSlideLeft: function (e) {
+      $(e.target).next('div').animate({width: 'toggle'}, 0)
+      console.log($(e.target).next('div'))
+    },
     sendMessage: function () {
       if (this.msgInput.trim().length === 0) {
         return false
@@ -158,6 +183,25 @@ export default {
   .panel{
     margin-bottom: 0;
   }
+  .bg-trans{
+    background: transparent;
+  }
+  .font-sm{
+    font-size: 13px;
+  }
+  .ti-md{
+    text-indent: 0.3em;
+  }
+  .ti-sm{
+    text-indent: 0.1em;
+  }
+  .ti-bg{
+    text-indent: 0.5em;
+  }
+  .ml-md{
+    margin-left: 5px;
+    margin-right: -5px;
+  }
   /*common end*/
   .room{
     height: 100%;
@@ -165,15 +209,18 @@ export default {
     padding-left: 0;
     position: relative;
     overflow: hidden;
+    display: flex;
   }
   /*member-area end*/
   .chat-area{
+    height: 100%;
     height: 100%;
     border: none;
     display: flex;
     flex-direction: column;
     margin: 0;
     padding: 0;
+    flex: 1 1 auto;
   }
   .message{
     background-color: black;
@@ -244,7 +291,8 @@ export default {
     justify-content: space-between;
     order: 1;
     align-items: center;
-    height: 10%;
+    height: 5%;
+    margin-right: -11px; 
     min-height: 50px;
     flex: 0 1 auto;
     box-shadow: 0 0 10px #4f9;
@@ -351,5 +399,71 @@ export default {
     width: 40px;
     height: 40px;
     border-radius: 40px;
+  }
+  /*group-members-list*/
+  .group-members-banner{
+    position: relative;
+    margin: 10px 5px;
+    margin-left: 10px;
+    padding-left: 5px;
+    border-left: 1px solid #fff;
+  }
+  @media screen and (max-width: 840px){
+    .group-members-banner{
+      display: none;
+    }
+  }
+  .group-member-collapse{
+    display: block;
+    border: 2px solid #fff;
+    border-radius: 2px;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    position: absolute;
+    width: 20px;
+    height: 40px;
+    left: 2px;
+    top: 50%;
+    transition: all 0.3s;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+  }
+  .group-member-collapse:hover{
+    box-shadow: 0 0 10px #fff;
+    background-color: #989898;
+  }
+  .group-member-list{
+    height: 100%;
+    overflow-y: scroll;
+    width: 120px;
+    padding-top: 10px;
+  }
+  .group-member-list::-webkit-scrollbar{
+    display: none;
+  }
+  .group-member-item{
+    padding: 0;
+    padding-bottom: 5px;
+    cursor: pointer;
+  }
+  .sub-list-item{
+    position: relative;
+    vertical-align: middle;
+    padding: 4px 18px;
+    height: 30px;
+    color: #fff;
+    border-radius: 0;
+    background-color: transparent;
+    box-shadow: 0 0 5px #000;
+    overflow: hidden;
+  }
+  .sub-list-item:hover{
+    background-color: #f05;
+    box-shadow: 0 0 50px #000;
+  }
+  .gmavatar{
+    width: 20px;
+    height: 20px;
+    margin-left: -20px;
   }
 </style>
