@@ -21,7 +21,7 @@
     <!-- navigation end ->-> -->
     <div class="container-fluid panel-area">
       <div class="row panel-box">
-        <div class="hostInfo col-md-4 col-sm-4 col-xs-4" id="hostInfo">
+        <div class="hostInfo" id="hostInfo">
           <div class="na">
             <div>
               <img :src="getUserInfo.avatar" :alt="getUserInfo.name" style="margin-left: 10px;">
@@ -45,7 +45,7 @@
             <span class="glyphicon glyphicon-remove">H I D E</span>
           </div>
         </div>
-        <div class="member-area col-md-4 col-sm-4 col-xs-4 panel panel-default">
+        <div class="member-area panel-default">
           <!-- 左侧头像 -->
           <div class="avatar-line">
             <div id="avatar-first" @click="toHome"><img :src="getUserInfo.avatar" :alt="getUserInfo.name" class="avatar-line-item"></div>
@@ -122,7 +122,7 @@
             </ul> -->
           </div>
         </div>
-        <div class="message-banner col-md-8 col-sm-7 col-xs-8">
+        <div class="message-banner">
           <div class="full-width avatar-banner">
             <span class="m-ops" v-for="op in ops">{{op}}</span>
             <div class="avatar" id="avatar" v-if="avatarShow" @click="userInfoShow(gui.info_in)">
@@ -378,6 +378,9 @@ export default {
     cursor: pointer;
     text-shadow: 0 0 10px #fff;
   }
+  button{
+    cursor: pointer;
+  }
   .switch-active{
     background-color: #f00;
     box-shadow: 0 0 10px #fff;
@@ -408,6 +411,8 @@ export default {
     margin-top: -29px;
   }
   .panel-box{
+    display: flex;
+    justify-content: space-between;
     height: 100%;
     background-color: #000;
     -webkit-app-region: no-drag;
@@ -428,6 +433,18 @@ export default {
     overflow-y: scroll;
     height: 100%;
     background: #353535;
+    transition: all 0.3s;
+  }
+  @media screen and (max-width: 450px) {
+    .member-area{
+      margin-left: -270px;
+      width: 0;
+    }
+    .hostInfo{
+      /*display: none;*/
+      margin-left: -270px;
+      width: 0;
+    }
   }
   .index-group{
     height: 100%;
@@ -598,16 +615,25 @@ export default {
   }
   .action-addFriend{
     position: absolute;
+    display: flex;
+    min-width: 250px;
     top: 50%;
+    font-size: 12px;
     left: 50%;
-    padding: 5px;
-    border-radius: 5px;
+    padding: 15px;
+    border-radius: 2px;
     transform: translate(-50%, -50%);
     border: 1px solid #fff;
-    background-color: #fff;
+    background-color: #000;
+    box-shadow: 0 0 5px #fff;
+  }
+  .action-addFriend button{
+    border: none;
+    margin: 0 2px;
+    background-color: #38f;
   }
   .action-addFriend *{
-    border-radius: 5px;
+    border-radius: 2px;
   }
   .action-addFriend *:focus{
     outline: none;
@@ -663,6 +689,7 @@ export default {
   .hostInfo{
     position: absolute;
     border-right: 1px solid #333;
+    width: 270px;
     z-index: 101;
     left: -100%;
     height: calc(100% - 29px);
@@ -848,6 +875,7 @@ export default {
   /*message-area*/
   .message-banner{
     padding: 0;
+    flex: 1 0 auto;
     display: flex;
     flex-direction: column;
   }

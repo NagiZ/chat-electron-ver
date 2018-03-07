@@ -388,6 +388,7 @@ const store = new Vuex.Store({
         return false
       })
     },
+    axios.post(url, data, config).then(response => {})
     async changeAvatar (ctx, data) {
       console.log(data.data.get('avatar'))
       data.data.append('user_token', ctx.state.user_info.token)
