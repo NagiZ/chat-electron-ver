@@ -24,7 +24,7 @@ export default function (win) {
       win.setMaximizable(true)
     } else {
       win.setResizable(false)
-      win.setSize(720, 500)
+      win.setSize(300, 500)
       win.setMaximizable(false)
     }
   })
