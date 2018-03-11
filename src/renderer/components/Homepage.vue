@@ -72,7 +72,7 @@ export default {
   }
   .menu-maximize{
     border: 2px solid #333;
-    border-radius: 2px;
+    border-radius: 3px;
     padding: 4px;
     margin-top: 4px;
   }

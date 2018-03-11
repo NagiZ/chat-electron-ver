@@ -416,7 +416,7 @@ export default {
   .group-member-collapse{
     display: block;
     border: 2px solid #fff;
-    border-radius: 2px;
+    border-radius: 3px;
     border-top-right-radius: 25px;
     border-bottom-right-radius: 25px;
     position: absolute;

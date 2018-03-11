@@ -462,7 +462,7 @@ export default {
     height: 100%;
     position: relative;
     overflow: hidden;
-    border-radius: 2px;
+    border-radius: 3px;
     width: 100%;
   }
   /*index*/
@@ -482,7 +482,7 @@ export default {
     margin: 0 auto;
     background-color: #e8e8e8;
     border: none;
-    border-radius: 2px;
+    border-radius: 3px;
     padding: 1px 5px;
   }
   .search-area>span{
@@ -492,7 +492,7 @@ export default {
     color: #fff;
     font-size: 12px;
     border: 1px solid #fff;
-    border-radius: 2px;
+    border-radius: 3px;
     cursor:pointer;
   }
   .search-area>span:hover{
@@ -621,7 +621,7 @@ export default {
     font-size: 12px;
     left: 50%;
     padding: 15px;
-    border-radius: 2px;
+    border-radius: 3px;
     transform: translate(-50%, -50%);
     border: 1px solid #fff;
     background-color: #000;
@@ -633,7 +633,7 @@ export default {
     background-color: #38f;
   }
   .action-addFriend *{
-    border-radius: 2px;
+    border-radius: 3px;
   }
   .action-addFriend *:focus{
     outline: none;
@@ -886,7 +886,7 @@ export default {
     font-size: 15px;
     margin: 14px 10px;
     line-height: 1em;
-    border-radius: 2px;
+    border-radius: 3px;
     background-color: #cc0;
     transition: all 0.3s;
     cursor: pointer;
