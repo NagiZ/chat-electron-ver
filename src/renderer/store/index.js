@@ -142,37 +142,40 @@ const store = new Vuex.Store({
         }
         var msgdata = JSON.parse(message.data)
         console.log(message)
-        var channelIn = state.room_info.messages_list.find(v => v.channel_id === msgdata.data.channel_id)
-        msgdata.data.type = 1
-        // 单向
-        var oneWay = state.social_circle.find(v => v.channel_id === msgdata.data.channel_id)
-        if (!channelIn || !oneWay) {
-          channelIn = {
-            channel_id: msgdata.data.channel_id,
-            messages: [],
-            unread: 0
+        if (msgdata.data.method === 'sendMessage' || msgdata.data.method === 'sendImg') {
+          msgdata.data.avatar = picLocation + msgdata.data.avatar
+          var channelIn = state.room_info.messages_list.find(v => v.channel_id === msgdata.data.channel_id)
+          msgdata.data.type = 1
+          // 单向
+          var oneWay = state.social_circle.find(v => v.channel_id === msgdata.data.channel_id)
+          if (!channelIn || !oneWay) {
+            channelIn = {
+              channel_id: msgdata.data.channel_id,
+              messages: [],
+              unread: 0
+            }
+            state.room_info.messages_list.push(channelIn)
+            oneWay = {
+              name: msgdata.data.name,
+              channel_id: msgdata.data.channel_id,
+              id: msgdata.data.id,
+              avatar: msgdata.data.avatar,
+              messages: [],
+              unread: 0,
+              info_in: false
+            }
+            state.social_circle.unshift(oneWay)
           }
-          state.room_info.messages_list.push(channelIn)
-          oneWay = {
-            name: msgdata.data.name,
-            channel_id: msgdata.data.channel_id,
-            id: msgdata.data.id,
-            avatar: picLocation + msgdata.data.avatar,
-            messages: [],
-            unread: 0,
-            info_in: false
+          if (channelIn.channel_id !== state.current_room_id) {
+            console.log('暂时不在此频道！')
+            channelIn.unread++
+            oneWay.unread++
           }
+          channelIn.messages.push(msgdata)
+          oneWay.messages.push(msgdata)
+          state.social_circle.splice(state.social_circle.indexOf(oneWay), 1)
           state.social_circle.unshift(oneWay)
         }
-        if (channelIn.channel_id !== state.current_room_id) {
-          console.log('暂时不在此频道！')
-          channelIn.unread++
-          oneWay.unread++
-        }
-        channelIn.messages.push(msgdata)
-        oneWay.messages.push(msgdata)
-        state.social_circle.splice(state.social_circle.indexOf(oneWay), 1)
-        state.social_circle.unshift(oneWay)
         console.log(ws.readyState)
         setTimeout(function () {
           console.log(ws.readyState)

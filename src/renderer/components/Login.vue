@@ -65,7 +65,7 @@ export default {
         await that.$store.dispatch('getMyFriends')
         await that.$store.dispatch('getMyChannel')
         await that.$store.dispatch('getHostInfo')
-        await that.$router.push('index')
+        await that.$router.push('/index')
       } else {
         alert(loginStatus.message)
       }
