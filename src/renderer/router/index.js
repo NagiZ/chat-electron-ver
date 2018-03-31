@@ -1,13 +1,13 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Homepage from '@/components/Homepage'
-import Login from '@/components/Login'
-import Register from '@/components/Register'
-import RegistChoice from '@/components/RegistChoice'
+import Homepage from '@/components/login/Homepage'
+import Login from '@/components/login/Login'
+import Register from '@/components/login/Register'
+// import RegistChoice from '@/components/login/RegistChoice'
 // import Back from '@/components/Back'
 // import Ms from '@/components/Menusup'
-import Index from '@/components/IndexPanel'
-import Room from '@/components/Room'
+import Index from '@/components/chat/IndexPanel'
+import Room from '@/components/chat/Room'
 
 Vue.use(Router)
 
@@ -18,11 +18,11 @@ export default new Router({
       name: 'Homepage',
       component: Homepage
     },
-    {
-      path: '/registchoice',
-      name: 'RegistChoice',
-      component: RegistChoice
-    },
+    // {
+    //   path: '/registchoice',
+    //   name: 'RegistChoice',
+    //   component: RegistChoice
+    // },
     {
       path: '/login',
       name: 'Login',

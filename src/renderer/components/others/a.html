@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		html, body{
+			height: 100%;
+		}
+		/*body{
+			height: 100%;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}*/
+		.container{
+			width: 900px;
+			height: 500px;
+			padding: 0 300px 0 200px;
+			box-sizing: border-box;
+		}
+		.container>div{
+			height: 100%;
+		}
+		.middle{
+			position: relative;
+			width: 100%;
+			float: left;
+			background-color: #000;
+		}
+		.a{
+			position: relative;
+			float: left;
+			width: 200px;
+			margin-left: -100%;
+			left: -200px;
+			/*width: 300px;
+			height: 300px;*/
+			background-color: #a00;
+			/*float: left;*/
+		}
+		.b{
+			position: relative;
+			width: 300px;
+			float: left;
+			right: -300px;
+			margin-left: -300px;
+			/*overflow: hidden;*/
+			/*flex: 1 0 auto;
+			height: 300px;*/
+			background-color: #0a0;
+		}
+		.fl{
+			float: left;
+			width: 300px;
+			height: 300px;margin-left: 20px;
+			background-color: #000;
+		}
+		.nf{
+			background-color: #a00;
+			width: 300px;
+			height: 400px;
+			margin-left: 20px;
+		}
+		.ppa{
+			display: flex;
+			height: 300px;
+			background-color: #0f0;
+		}
+		.p1{
+			order: 2;
+			flex: 1 0 auto;
+			background-color: #aa0;
+		}
+		.p2{
+			flex: 2 0 auto;
+			background-color: #0aa;
+		}
+		/*解决margin折叠，相邻元素的话，后面的元素加上display: inline-block; 或者后面的元素设置浮动*/
+	</style>
+</head>
+<body>
+<!-- <div class="container">
+	<div class="middle"></div>
+	<div class="a"></div>
+	<div class="b"></div>
+</div> -->
+<div class="par">
+<div class="fl"></div>
+<div class="nf"></div>
+</div>
+<div class="ppa">
+	<div class="p1"></div>
+	<div class="p2"></div>
+</div>
+<script type="text/javascript">
+	// var fn = function () {
+	// 	console.time('stest');
+	// }
+	// var fn1 = function () {
+	// 	console.timeEnd('stest');
+	// }
+	// function a(){
+	// 	var n = new Date();
+	// 	while(new Date() - n < 100){}
+	// }
+	// setTimeout(fn, 100);
+	// setTimeout(fn1, 500);
+	// a();
+	var reg = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9]+(\.[a-zA-Z0-9]+)*\.[a-zA-Z0-9]{2,6}$/;
+	var reg1 = /^1[3-9][0-9]{9}$/;
+	function regx(str){
+		return reg.test(str) || reg1.test(str);
+	}
+	function np(str){
+		var sub = /(.)\1/g,	
+			mystr = '',
+			start = 0,
+			arr = [];
+		while((mystr = sub.exec(str)) !== null){
+			console.log(str.substring(start, sub.lastIndex-1))
+			arr.push(str.substring(start, sub.lastIndex-1));
+			start = sub.lastIndex-1;
+			console.log(start)
+		}
+		if (start<=str.length-1) {
+			arr.push(str.substring(start, str.length));
+		}
+		return arr;
+	}
+	var arrr = [1,2,3];
+	function npp(str){
+		var arr = [],
+			arr_sub = [],
+			arr_str = str.split(''),
+			max = 0,
+			dot = 0;
+		for(var i = 0; i < arr_str.length; i++){
+			if (arr_sub.indexOf(arr_str[i]) == -1) {
+				arr_sub.push(arr_str[i]);
+			}else{
+				dot += (arr_sub.indexOf(arr_str[i]) + 1);
+				arr.push(arr_sub.join(''));
+				arr_sub = str.substring(dot, i+1).split('');
+			}
+		}
+		arr.push(arr_sub.join(''));
+		return arr.map(v =>{
+			return v.length;
+		}).sort(function(a, b){
+			return b - a;
+		})[0]
+	}
+
+	var findRestaurant = function(list1, list2) {
+	    var obj = list1.map((v, i) => {
+	        var bi = list2.indexOf(v);
+	        return bi === -1 ? null : {name: v, sum: i + bi};
+	    }).filter(v => {
+	        return v!==null;          
+	    }).sort(function(a, b){
+	        return a.sum - b.sum;
+	    })[0]
+	    console.log(obj);
+	    return obj.name;
+	};
+	function larcat(arr1, arr2, k) {
+		var len = arr1.length + arr2.length;
+		sublen = len - k + 1;
+		var max1 = {v: 0, i: 0},
+			max2 = {v: 0, i: 0},
+			sub1 = [],
+			sub2 = [],
+			out = [];
+		for(var i = 0, slen = arr1.length <= sublen ? arr1.length : sublen; i < slen; i++) {
+			if (arr1[i] > max1.v) {
+				max1.v = arr1[i];
+				max1.i = i;
+			}
+		}
+		for(var i = 0, slen = arr2.length <= sublen ? arr2.length : sublen; i < slen; i++) {
+			if (arr2[i] > max2.v) {
+				max2.v = arr2[i];
+				max2.i = i;
+			}
+		}
+		if (max1.v > max2.v) {
+			sub1 = arr1.slice(max1.i + 1);
+			sub2 = arr2;
+			out.push(max1.v);
+			if (k==1) {
+				return out
+			}else{
+				return out.concat(larcat(sub1, sub2, k - 1))
+			}
+		} else if(max1.v < max2.v){
+			out.push(max2.v);
+			sub1 = arr1;
+			sub2 = arr2.slice(max2.i + 1)
+			if (k==1) {
+				return out
+			}else{
+				return out.concat(larcat(sub1, sub2, k - 1))
+			}
+		} else {
+			out.push(max1.v);
+			if (k==1) {
+				return out
+			}else{
+				var a1 = 0,
+					a2 = 0,
+					len1 = len - max1.i - k + 1,
+					len2 = len - max2.i - k + 1;
+				// for(var i=max1.i, l1 = arr1.slice(max1.i+1).length <= len1 ? ; i<0)
+				return out.concat(larcat(arr1.slice(max1.i+1), arr2, k - 1))
+			}
+		}
+		// console.log(max1);
+		// console.log(max2);
+	}
+	function assis(arr1, arr2, k) {
+		// var len = arr1.length + arr2.length;
+		// sublen = len - k + 1;
+		// var max1 = {v: 0, i: 0},
+		// 	max2 = {v: 0, i: 0};
+		// for(var i = 0, slen = arr1.length <= sublen ? arr1.length : sublen; i < slen; i++) {
+		// 	if (arr1[i] > max1.v) {
+		// 		max1.v = arr1[i];
+		// 		max1.i = i;
+		// 	}
+		// }
+		// for(var i = 0, slen = arr2.length <= sublen ? arr2.length : sublen; i < slen; i++) {
+		// 	if (arr2[i] > max2.v) {
+		// 		max2.v = arr2[i];
+		// 		max2.i = i;
+		// 	}
+		// }
+		// if (max1.v > max2.v) {
+		// 	return 1
+		// } else if(max1.v > max2.v) {
+		// 	return 2
+		// } else{
+		// 	return assis(arr)
+		// }
+	}
+
+	function subArr(arr, n){
+		var out = [],
+			mi = -1,
+			max = 0;
+		while(n){	
+			var sub_arr = arr.slice(mi + 1);
+			var sublen = sub_arr.length - n + 1,
+				index = 0;
+			for(var i = 0; i < sublen; i++){
+				if (sub_arr[i] > max) {
+					max = sub_arr[i];
+					index = i;				}
+			}
+			out.push(max);
+			mi += index + 1;
+			max = 0;
+			n--;
+		}
+		return out;
+	}
+
+	function comp(arra, arrb, ia, ib) {
+		while(ia < arra.length && ib < arrb.length && arra[ia] == arrb[ib]){
+			ia++;
+			ib++;
+		}
+		return ib == arrb.length || (ia < arra.length && arra[ia] > arrb[ib]);
+	}
+
+	function merge(arr1, arr2){
+		var out = [],
+			len = arr1.length + arr2.length,
+			i = 0,
+			j = 0;
+		while(len){
+			if (comp(arr1, arr2, i, j)) {
+				out.push(arr1[i]);
+				i++;
+			}else{
+				out.push(arr2[j]);
+				j++;
+			}
+			len--;
+		}
+		return out;
+	}
+
+	function maxNumber(arr1, arr2, k) {
+		var result = [];
+		for(var i = (0 > k - arr2.length) ? 0 : k - arr2.length; i <= k && i <= arr1.length; i++){
+			var sub = merge(subArr(arr1, i), subArr(arr2, k - i));
+			result = comp(result,sub, 0, 0) ? result : sub;
+		}
+		return result;
+	};
+	// var arr = [8,9,7,3,5,9,1,0,8,5,3,0,9,2,7,4,8,9,8,1,0,2,0,2,7,2,3,5,4,7,4,1,4,0,1,4,2,1,3,1,5,3,9,3,9,0,1,7,0,6,1,8,5,6,6,5,0,4,7,2,9,2,2,7,6,2,9,2,3,5,7,4,7,0,1,8,3,6,6,3,0,8,5,3,0,3,7,3,0,9,8,5,1,9,5,0,7,9,6,8,5,1,9,6,5,8,2,3,7,1,0,1,4,3,4,4,2,4,0,8,4,6,5,5,7,6,9,0,8,4,6,1,6,7,2,0,1,1,8,2,6,4,0,5,5,2,6,1,6,4,7,1,7,2,2,9,8,9,1,0,5,5,9,7,7,8,8,3,3,8,9,3,7,5,3,6,1,0,1,0,9,3,7,8,4,0,3,5,8,1,0,5,7,2,8,4,9,5,6,8,1,1,8,7,3,2,3,4,8,7,9,9,7,8,5,2,2,7,1,9,1,5,5,1,3,5,9,0,5,2,9,4,2,8,7,3,9,4,7,4,8,7,5,0,9,9,7,9,3,8,0,9,5,3,0,0,3,0,4,9,0,9,1,6,0,2,0,5,2,2,6,0,0,9,6,3,4,1,2,0,8,3,6,6,9,0,2,1,6,9,2,4,9,0,8,3,9,0,5,4,5,4,6,1,2,5,2,2,1,7,3,8,1,1,6,8,8,1,8,5,6,1,3,0,1,3,5,6,5,0,6,4,2,8,6,0,3,7,9,5,5,9,8,0,4,8,6,0,8,6,6,1,6,2,7,1,0,2,2,4,0,0,0,4,6,5,5,4,0,1,5,8,3,2,0,9,7,6,2,6,9,9,9,7,1,4,6,2,8,2,5,3,4,5,2,4,4,4,7,2,2,5,3,2,8,2,2,4,9,8,0,9,8,7,6,2,6,7,5,4,7,5,1,0,5,7,8,7,7,8,9,7,0,3,7,7,4,7,2,0,4,1,1,9,1,7,5,0,5,6,6,1,0,6,9,4,2,8,0,5,1,9,8,4,0,3,1,2,4,2,1,8,9,5,9,6,5,3,1,8,9,0,9,8,3,0,9,4,1,1,6,0,5,9,0,8,3,7,8,5];
+	
+	// var arrs = [7,8,4,1,9,4,2,6,5,2,1,2,8,9,3,9,9,5,4,4,2,9,2,0,5,9,4,2,1,7,2,5,1,2,0,0,5,3,1,1,7,2,3,3,2,8,2,0,1,4,5,1,0,0,7,7,9,6,3,8,0,1,5,8,3,2,3,6,4,2,6,3,6,7,6,6,9,5,4,3,2,7,6,3,1,8,7,5,7,8,1,6,0,7,3,0,4,4,4,9,6,3,1,0,3,7,3,6,1,0,0,2,5,7,2,9,6,6,2,6,8,1,9,7,8,8,9,5,1,1,4,2,0,1,3,6,7,8,7,0,5,6,0,1,7,9,6,4,8,6,7,0,2,3,2,7,6,0,5,0,9,0,3,3,8,5,0,9,3,8,0,1,3,1,8,1,8,1,1,7,5,7,4,1,0,0,0,8,9,5,7,8,9,2,8,3,0,3,4,9,8,1,7,2,3,8,3,5,3,1,4,7,7,5,4,9,2,6,2,6,4,0,0,2,8,3,3,0,9,1,6,8,3,1,7,0,7,1,5,8,3,2,5,1,1,0,3,1,4,6,3,6,2,8,6,7,2,9,5,9,1,6,0,5,4,8,6,6,9,4,0,5,8,7,0,8,9,7,3,9,0,1,0,6,2,7,3,3,2,3,3,6,3,0,8,0,0,5,2,1,0,7,5,0,3,2,6,0,5,4,9,6,7,1,0,4,0,9,6,8,3,1,2,5,0,1,0,6,8,6,6,8,8,2,4,5,0,0,8,0,5,6,2,2,5,6,3,7,7,8,4,8,4,8,9,1,6,8,9,9,0,4,0,5,5,4,9,6,7,7,9,0,5,0,9,2,5,2,9,8,9,7,6,8,6,9,2,9,1,6,0,2,7,4,4,5,3,4,5,5,5,0,8,1,3,8,3,0,8,5,7,6,8,7,8,9,7,0,8,4,0,7,0,9,5,8,2,0,8,7,0,3,1,8,1,7,1,6,9,7,9,7,2,6,3,0,5,3,6,0,5,9,3,9,1,1,0,0,8,1,4,3,0,4,3,7,7,7,4,6,4,0,0,5,7,3,2,8,5,1,4,5,8,5,6,7,5,7,3,3,9,6,8,1,5,1,1,1,0,3];
+	// var t = maxNumber(arr, arrs, 500);
+
+	// =====================================================================================>
+	var uniquePaths = function(m, n) {
+    	var am = [];
+    	for(var i = 0; i < m; i++){
+    		am[i] = [];
+    	}
+    	for(var i = 0; i < m; i++){
+    		am[i][0] = 1;
+    	}
+    	for(var i = 0; i < n; i++){
+    		am[0][i] = 1;
+    	}
+	    for(var i = 1; i < m; i++){
+	        for(var j = 1; j < n; j++){
+	            am[i][j] = am[i-1][j] + am[i][j-1];
+	        }
+	    }
+	    return am[m-1][n-1];
+	};
+	//====================================================================================?
+	var sortColors = function(nums) {
+
+		var len = nums.length,
+			i = 0;
+		while(len){
+			if (nums[i] == 0) {
+				nums.unshift(nums.splice(i, 1)[0]);
+				i++;
+			} else if(nums[i] == 2){
+				nums.push(nums.splice(i, 1)[0]);
+			} else{
+				i++;
+			}
+			len --
+		}
+		return nums;
+	};
+
+	var plusOne = function(digits) {
+		var len = digits.length,
+			sup = 0;
+		while(len){
+			if (digits[len - 1] === 2) {
+				digits[len - 1] = 0;
+				sup = 1;
+				len --;
+			}else{
+				digits[len - 1] ++;
+				len = 0;
+			}
+		}
+		return digits;
+	};
+
+	function searchMatrix(matrix, target){
+		if (!(matrix[0] instanceof Array)) {
+			return false;
+		}
+		var leny = matrix.length,
+			lenx = matrix[0].length,
+			row = -1;
+		if (target > matrix[leny-1][lenx-1] || target < matrix[0][0]) return false;
+		for(var i = 0; i < leny; i++){
+			if (target < matrix[i][0]) {
+				row = i;
+				i = leny;
+			}
+		}
+		row = row == -1 ? leny -1 : row - 1;
+		return matrix[row].indexOf(target) > -1;
+	}
+	//=========================================================================================>合并区间
+	var merge = function(intervals) {
+		var i = 0;
+	    while(i < intervals.length - 1){
+	    	if (intervals[i].length == 0) {
+	    		intervals.splice(i, 1);
+	    	} else if(intervals[i].length == 1) {
+	    		var li = intervals[i][0],
+	    			lii = intervals[i+1];
+	    		if (li> lii[0] && li < lii[1]) {
+	    			intervals.splice(i, 1);
+	    		} else {
+	    			i++;
+	    		}
+	    	} else if (intervals[i].length == 2) {
+	    		var li = intervals[i],
+	    			lii = intervals[i+1],
+	    			ac = judge(li, lii);
+	    		if (ac == 'left') {
+	    			intervals.splice(i+1, 1);
+	    		} else if (ac == 'right') {
+	    			intervals[i][1] = intervals[i+1][1];
+	    			intervals.splice(i+1, 1);
+	    		} else {
+	    			i++;
+	    		}
+	    	}
+	    }
+	    return intervals;
+	};
+	function judge (a1, a2) {
+		if (a1[0] < a2[0] && a1[1] > a2[0]) {
+			if (a1[1] <= a2[1]) {
+				return 'right';
+			} else {
+				return 'left';
+			}
+		} else {
+			return false;
+		}
+	}
+
+	// ============================================================================>
+	var longestSubstring = function(s, k) {
+		if (s.length < k) {
+			return 0
+		}
+	    var len = s.length,
+	        sa = s.split('');
+	        hash = {};
+	    for(var i = 0; i < len; i++){
+	        hash[sa[i]] = hash[sa[i]] || {count: 0};
+	        hash[sa[i]].count++;
+	    }
+	    var sa_sub = Object.keys(hash).map(v => Object.assign({ele: v}, hash[v])).sort(function(a, b){
+	    	return a.count - b.count;
+	    });
+	    // console.log(sa_sub);
+	    if (sa_sub[0].count >= k) {
+	    	return s.length;
+	    }else{
+	    	var ans = 0;
+			var	nsa = sa_sub.filter(v => v.count < k);
+		    // console.log(nsa);
+		    for(var i = 0, slen = nsa.length; i< slen; i++){
+		        var reg = new RegExp(nsa[i].ele + '+', 'g');
+		        s = s.replace(reg, '.');
+		    }
+		    // console.log(s);
+		    var result = s.split(/\.+/).filter(v => v.length >= k);
+		    // console.log(result)
+		    for(var i = 0; i < result.length; i++){
+		    	var sub_r = longestSubstring(result[i], k);
+		    	if (sub_r > ans) {
+		    		// alert('large')
+		    	}
+		    	ans = ans > sub_r ? ans : sub_r;
+		    	// console.log(ans);
+		    }
+		    console.log(ans);
+		    return ans;
+		}
+	};
+	// var t = longestSubstring("aaabbbcdefcdefcde", 3);
+	function test(x){
+		x = x-1;
+		if (x<1) {
+			return x;
+		}else{
+			test(x);
+		}
+	}
+
+	var nextPermutation = function(nums) {
+	    var len = nums.length,
+	        slen = len,
+	        targetIndex = null;
+	    while((slen--) > 1){
+	        if(nums[slen] > nums[slen - 1]){
+	            targetIndex = slen - 1;
+	            slen = 1;
+	        }
+	    }
+	    if(targetIndex !== null){
+	        for(var i = len - 1; i > targetIndex; i--){
+	            if(nums[targetIndex] < nums[i]){
+	                var temp = nums[i];
+	                nums[i] = nums[targetIndex];
+	                nums[targetIndex] = temp;
+	                i = targetIndex;
+	            }
+	        }
+	        var j = targetIndex + 1,
+	        	k = len - 1;
+	        while(j < k){
+	        	console.log(nums);
+	            var stemp = nums[j];
+	            nums[j] = nums[k];
+	            nums[k] = stemp;
+	            j++;
+	            k--;
+	        }
+	        console.log(nums);
+	    }else{
+	        nums.reverse();
+	    }
+	    console.log(nums);
+	};
+	nextPermutation([1,3,2]);
+</script>
+
+</body>
+</html>

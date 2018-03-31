@@ -1,0 +1,95 @@
+.register{
+    width: 100%;
+    height: 100%;
+  }
+  /**/
+  .loginBox{
+    margin-top: 10px;
+    margin-left: 0;
+    margin-right: 0;
+    -webkit-app-region: no-drag;
+  }
+  .loginBox>div{
+    padding: 15px 30px;
+  }
+  .register-label{
+    font: bolder 18px '幼圆';
+    color: #59f;
+  }
+  #login-form-box{
+    width: 100%;
+  }
+  .pwvertify{
+    color: #fd3515;
+    font: 10px sans-serif;
+    text-indent: 0.5em;
+  }
+  /*btn-action*/
+  .btn-act{
+    color: #fff;
+    display: flex;
+    overflow: hidden;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    /*height: 90px;*/
+    padding: 8px 0;
+    /*min-height: 100px;*/
+  }
+  .margin-top-medium{
+    margin-top: 35px;
+  }
+  .su{
+    width: 100%;
+    padding: 5px 10px;
+    background: #3d4;
+    border-radius: 5px;
+    transition: background 0.5s;
+    border: none;
+  }
+  .su:hover{
+    opacity: 0.9;
+    background: #585858;
+  }
+  .su:focus{
+    outline: none;
+  }
+  .f-pw{
+    align-self: flex-end;
+  }
+  .input-wrapper{
+    background: linear-gradient(90deg, #fff, #ccc 40%, #fff);
+    padding: 0;
+    padding-bottom: 2px;
+  }
+  .common-input{
+    border: none;
+    /*box-shadow: 0 2px 5px #d8d8d8;*/
+    width: 100%;
+    padding: 8px 5px;
+    background: #fff;
+    transition: all 0.5s;
+  }
+  .common-input:focus{
+    outline: none;
+  }
+  #captcha-box{
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+  }
+  #captcha{
+    padding: 2px 0;
+    height: 100%;
+    margin-left: -56px;
+    cursor: pointer;
+  }
+  .captcha-input{
+    display: inline;
+    float: left;
+    border-bottom: none;
+    box-shadow: 0 0 -30px #f00;
+  }
+  .captcha-input:focus{
+    box-shadow: none;
+  }

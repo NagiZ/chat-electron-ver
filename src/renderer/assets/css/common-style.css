@@ -1,0 +1,59 @@
+/*cs*/
+.full-height{
+  height: 100%;
+}
+.full-width{
+  width: 100%;
+}
+.bg-trans{
+  background: transparent;
+}
+.flex-col{
+  display: flex;
+  flex-direction: column;
+}
+.font-sm{
+  font-size: 13px;
+}
+.ti-md{
+  text-indent: 0.3em;
+}
+.ti-sm{
+  text-indent: 0.1em;
+}
+.ti-bg{
+  text-indent: 0.5em;
+}
+/*menu part*/
+.menu-mark{
+  display: inline-block;
+  padding: 0 5px;
+  height: 100%;
+}
+.menu-mark-sub{
+  display: block;
+  padding: 0 5px;
+  width: 100%;
+  transition: all 0.3s;
+}
+.menu-mark:hover{
+  box-shadow: 0 0 5px #fff;
+}
+.menu-minimize{
+  background-color: #333;
+  height: 2px;
+  margin-top: 9px;
+}
+.menu-maximize{
+  border: 2px solid #333;
+  border-radius: 2px;
+  padding: 4px;
+  margin-top: 4px;
+}
+.menu-close{
+  background: url(../close.png) no-repeat;
+  background-size: contain;
+  padding: 8px;
+  margin-top: 2px;
+}
+/*end menu*/

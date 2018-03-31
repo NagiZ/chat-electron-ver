@@ -141,8 +141,8 @@ const store = new Vuex.Store({
           return
         }
         var msgdata = JSON.parse(message.data)
-        console.log(message)
-        if (msgdata.data.method === 'sendMessage' || msgdata.data.method === 'sendImg') {
+        console.log(msgdata)
+        if (msgdata.method === 'sendMessage' || msgdata.method === 'sendImg') {
           msgdata.data.avatar = picLocation + msgdata.data.avatar
           var channelIn = state.room_info.messages_list.find(v => v.channel_id === msgdata.data.channel_id)
           msgdata.data.type = 1
@@ -164,6 +164,7 @@ const store = new Vuex.Store({
               unread: 0,
               info_in: false
             }
+            console.log(oneWay)
             state.social_circle.unshift(oneWay)
           }
           if (channelIn.channel_id !== state.current_room_id) {
@@ -228,10 +229,11 @@ const store = new Vuex.Store({
       var result = {}
       var loginData = qs.stringify({
         'phone': data.phone.trim(),
-        'password': data.password.trim(),
-        'captcha': data.captcha
+        'password': data.password.trim()
+        // 'captcha': data.captcha
       })
       return axios.post(apiLocation + 'user/login', loginData).then((response) => {
+        console.log(response.data)
         if (response.data.code === 200) {
           var rdata = response.data
           ctx.state.user_info.token = rdata.data.user_token
@@ -244,7 +246,7 @@ const store = new Vuex.Store({
         } else {
           result = {
             status: 400,
-            message: response.data.messages
+            message: response.data.message
           }
         }
         return result
@@ -256,10 +258,11 @@ const store = new Vuex.Store({
       var result = {}
       var registerData = qs.stringify({
         'phone': data.phone.trim(),
-        'password': data.password.trim(),
-        'captcha': data.captcha
+        'password': data.password.trim()
+        // 'captcha': data.captcha
       })
       return axios.post(apiLocation + 'user/register', registerData).then((response) => {
+        console.log(response)
         if (response.data.code === 200) {
           var rdata = response.data
           ctx.state.user_info.token = rdata.data.user_token
@@ -272,7 +275,7 @@ const store = new Vuex.Store({
         } else {
           result = {
             status: 555,
-            message: 'Reagist Failed!'
+            message: 'Error: ' + response.data.message
           }
         }
         return result
@@ -391,7 +394,6 @@ const store = new Vuex.Store({
         return false
       })
     },
-    axios.post(url, data, config).then(response => {})
     async changeAvatar (ctx, data) {
       console.log(data.data.get('avatar'))
       data.data.append('user_token', ctx.state.user_info.token)

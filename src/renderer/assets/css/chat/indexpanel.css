@@ -1,0 +1,544 @@
+input:focus{
+    outline: none!important;
+  }
+  ul, li{
+    background-color: transparent;
+  }
+  li{
+    transition: all 0.3s;
+    background-color: transparent;
+  }
+  li:hover{
+    cursor: pointer;
+    text-shadow: 0 0 10px #fff;
+  }
+  button{
+    cursor: pointer;
+  }
+  .switch-active{
+    background-color: #f00;
+    box-shadow: 0 0 10px #fff;
+  }
+  .member-list-ul{
+    position: absolute;
+    width: 100%;
+  }
+  .np{
+    padding: 0;
+  }
+  .panel{
+    margin-bottom: 0;
+  }
+  .dn{
+    display: none;
+  }
+  .fl{
+    float: left;
+  }
+  #navigation{
+    margin-bottom: 0;
+  }
+  .panel-area{
+    width: 100%;
+    height: 100%;
+    padding-top: 29px;
+    margin-top: -29px;
+  }
+  .panel-box{
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+    background-color: #000;
+    -webkit-app-region: no-drag;
+  }
+  /*common end*/
+  nav{
+    background-color: #555;
+  }
+  .member-area{
+    position: relative;
+    min-width: 270px;
+    border: none;
+    border-radius: 0;
+    height: 100%;
+    padding-left: 0;
+    padding-right: 0;
+    overflow: hidden;
+    overflow-y: scroll;
+    height: 100%;
+    background: #353535;
+    transition: all 0.3s;
+  }
+  @media screen and (max-width: 450px) {
+    .member-area{
+      margin-left: -270px;
+      width: 0;
+    }
+    .hostInfo{
+      /*display: none;*/
+      margin-left: -270px;
+      width: 0;
+    }
+  }
+  .index-group{
+    height: 100%;
+    margin-left: 70px;
+    overflow: hidden;
+  }
+  .flex-col{
+    display: flex;
+    flex-direction: column;
+  }
+  .member-area::-webkit-scrollbar{
+    display: none;
+  }
+  .IndexPanel{
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    border-radius: 2px;
+    width: 100%;
+  }
+  /*index*/
+  .index{
+    height: 100%;
+    padding: 5px;
+    background-color: #af0;
+  }
+  .search-area{
+    padding: 15px 10px;
+    padding-bottom: 0;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #fff;
+  }
+  .search-area>input{
+    display: block;
+    margin: 0 auto;
+    background-color: #e8e8e8;
+    border: none;
+    border-radius: 2px;
+    padding: 1px 5px;
+  }
+  .search-area>span{
+    display: inline-block;
+    margin: 15px 5px;
+    padding: 2px;
+    color: #fff;
+    font-size: 12px;
+    border: 1px solid #fff;
+    border-radius: 2px;
+    cursor:pointer;
+  }
+  .search-area>span:hover{
+    box-shadow: 0 0 5px #fff;
+  }
+  .no-margin{
+    margin: 0;
+  }
+  .no-border{
+    border: none;
+  }
+  #nav-collapse::-webkit-scrollbar{
+      display: none;
+  }
+  html::-webkit-scrollbar{
+      display: none;
+  }
+  .group-item{
+    padding: 0;
+    padding-bottom: 5px;
+  }
+  .channel_list{
+    color: #0af;
+  }
+  .channel_list_item{
+    background-color: transparent;
+    border-radius: 0;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    overflow: hidden;
+    padding-left: 0;
+    padding-right: 0;
+    box-shadow: 0 0 5px #fff;
+  }
+  .channel_list_item ul{
+    color: #fff;
+    opacity: 0.9;
+    margin-bottom: -10px;
+    margin-top: 10px;
+
+  }
+  .sub-list-item{
+    position: relative;
+    vertical-align: middle;
+    padding: 6px 18px;
+    padding-left: 48px;
+    height: 48px;
+    color: #fff;
+    border-radius: 0;
+    background-color: transparent;
+    box-shadow: 0 0 5px #000;
+    overflow: hidden;
+  }
+  .sub-list-item>img{
+    position: absolute;
+    left: 3px;
+    top: 3px;
+    width: 42px;
+    border-radius: 48px;
+  }
+  .sub-list-item:hover{
+    background-color: #f05;
+    box-shadow: 0 0 50px #000;
+  }
+  .badge-sub{
+    position: absolute;
+    right: 0;
+    top: 6px;
+  }
+  #private{
+    background-color: transparent;
+    border-top: 1px solid #fff;
+  }
+  #private p{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 12px;
+  }
+  .newId{
+    border-right: 1px solid #a8a8a8;
+    position: relative;
+  }
+  .newId>div{
+    padding: 8px 10px;
+    line-height: 1.5em;
+  }
+  .newId input{
+    position: absolute;
+    right: 0;
+    background-color: #a8a8a8;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: none;
+    margin-right: 10px;
+    margin-left: 40px;
+  }
+  .newId span{
+    line-height: 34px;
+  }
+  #newId{
+    overflow: hidden;
+    display: flex;
+  }
+  #newId .id{
+    float: left;
+  }
+  #newId input{
+    border: none;
+    display: inline-block;
+    border-radius: 5px;
+    padding: 5px 20px;
+  }
+  #newId button{
+    display: inline-block;
+  }
+  #newId button:focus{
+    outline: none;
+  }
+  .action-addFriend{
+    position: absolute;
+    display: flex;
+    min-width: 250px;
+    top: 50%;
+    font-size: 12px;
+    left: 50%;
+    padding: 15px;
+    border-radius: 2px;
+    transform: translate(-50%, -50%);
+    border: 1px solid #fff;
+    background-color: #000;
+    box-shadow: 0 0 5px #fff;
+  }
+  .action-addFriend button{
+    border: none;
+    margin: 0 2px;
+    background-color: #38f;
+  }
+  .action-addFriend *{
+    border-radius: 2px;
+  }
+  .action-addFriend *:focus{
+    outline: none;
+  }
+  /**/
+  .unread{
+    position: absolute;
+    font-size: 10px;
+    color: #fff;
+    text-shadow: 0 0 3px #fff;
+    right: 0;
+    margin-right: 5px; 
+    padding: 3px;
+    border-radius: 14px;
+    background-color: #a0a;
+  }
+  .cover{
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+  }
+  /*setting*/
+  .hostInfoBtn{
+    position: absolute;
+    width: 40px;
+    bottom: 0;
+    left: 15px;
+    font-size: 26px;
+    color: #aaa;
+    z-index: 100;
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+  .hostInfoBtn:hover{
+    text-shadow: 0 0 10px #111;
+  }
+  .menu-hide-host{
+    position: absolute;
+    padding: 5px;
+    right: 0;
+    bottom: -10px;
+    font-size: 26px;
+    color: #121212;
+    z-index: 100;
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+  .menu-hide-host:hover{
+    text-shadow: 0 0 10px #aaa;
+    box-shadow: 0 0 10px #aaa;
+  }
+  .hostInfo{
+    position: absolute;
+    border-right: 1px solid #333;
+    width: 270px;
+    z-index: 101;
+    left: -100%;
+    height: calc(100% - 29px);
+    background-color: #383838;
+    transition: all 0.5s;
+  }
+  .na{
+    vertical-align: middle;
+    min-height: 30%;
+    text-align: left;
+    color: #fff;
+  }
+  .na>div{
+    position: relative;
+  }
+  .na>div>img{
+    width: 70px;
+    height: 70px;
+    border-radius: 70px; 
+  }
+  .na #name{
+    display: inline-block;
+    font-size: 25px;
+    color: #fff;
+    width: 100%;
+    text-shadow: 0 0 15px #fff;
+    padding: 20px 5px;
+  }
+  .na:hover .modify{
+    display: inline-block;
+  }
+  .na p{
+    text-indent: 10px;
+    font-family: 'yahei'
+  }
+  .modify{
+    position: absolute;
+    display: none;
+    padding: 2px 5px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    background-color: #333;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #08f;
+    transition: all 0.3s;
+  }
+  .modify:hover{
+    color: #fff;
+  }
+  .host-detail{
+    color: #fff;
+    border: none;
+  }
+  .host-detail>li{
+    border: none;
+    font-family: "yahei";
+    border-radius: 0;
+    background-color: transparent;
+  }
+  .noleft{
+    left: 0;
+  }
+  /*弹出设置修改部分*/
+  .setting-panel{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    background-color: #111;
+    opacity: 0.5;
+  }
+  .setting{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    width: 65%;
+    height: 85%;
+    color: #fff;
+    background-color: #383838;
+    transform: translateX(-50%);
+  }
+  .comfirm:hover{
+    color:#fff;
+    text-shadow: 0 0 10px #fff;
+  }
+  .setting>h4{
+    font-family: Georgia, serif; 
+  }
+  .setting-item-name{
+    padding: 20px 40px;
+    flex: 0 0 auto;
+  }
+  .setting-item-name>input{
+    border: none;
+    width: 100%;
+    float: left;
+    border-bottom: 1px solid #fff;
+    padding: 8px 15px;
+    padding-right: 60px;
+    background-color: transparent;
+  }
+  #confirm-name{
+    border: none;padding: 8px 12px;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    margin-left: -56px;
+  }
+  .setting-item-avatar{
+    flex: 1 0 auto;
+    position: relative;
+    padding: 20px 40px;
+    padding-top: 0;
+    overflow: hidden;
+  }
+  .setting-item-avatar>div{
+    position: absolute;
+    left: 200px;
+    top: 50px;
+  }
+  #canvas{
+    float: left;
+    border: 1px solid #fff;
+    background-color: #fff;
+  }
+  #canvas_sub{
+    position: absolute;
+    bottom: 0;
+    left: -12px;
+  }
+  /**/
+  #avatar{
+    -webkit-app-region: no-drag;
+  }
+  /*avatar-line*/
+  .avatar-line{
+    width: 72px;
+    height: 100%;
+    border-right: 1px solid #fff;
+    float: left;
+  }
+  #avatar-first{
+    border-bottom: 1px solid #fff;
+    margin-bottom: -7.5px;
+  }
+  .avatar-line-item{
+    display: block;
+    width: 64px;
+    height: 64px;
+    margin: 15px auto;
+    border-radius: 32px;
+  }
+  .avatar-line-item:first-child{
+    margin-bottom: 7.5px;
+  }
+  /*member-area*/
+  .member-list-banner{
+    overflow-y: scroll;
+    height: 100%;
+    position: relative;
+    width: 100%;
+  }
+  .member-list-banner::-webkit-scrollbar{
+    display: none;
+  }
+  /*addfriend*/
+  .aabbccdd{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    display: block;
+    width: 30px;
+    height: 30px;
+    padding: 5px;
+    border-radius: 15px;
+    background-color: #fff;
+  }
+  /*message-area*/
+  .message-banner{
+    padding: 0;
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+  }
+  .m-ops{
+    display: block;
+    float: left;
+    padding: 4px 10px;
+    font-size: 15px;
+    margin: 14px 10px;
+    line-height: 1em;
+    border-radius: 2px;
+    background-color: #cc0;
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+  .m-ops:hover{
+    background-color: #0cc;
+  }
+  .avatar-banner{
+    background-color: #e8e8e8;
+    margin-bottom: 3px;
+    height: 47px;
+  }
+  .avatar{
+    width:47px; height: 47px; float: right; margin-right: 20px; cursor: pointer;
+  }
+  .avatar>img{
+    width: 41px;
+    height: 41px;
+    margin-top: 3px;
+    border-radius: 50px;
+  }

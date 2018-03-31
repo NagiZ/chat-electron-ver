@@ -20,12 +20,12 @@ export default function (win) {
   ipcMain.on('resizable', (e, tag) => {
     if (tag === 1) {
       win.setResizable(true)
-      win.setSize(720, 500)
+      win.setSize(720, 568)
       win.setMaximizable(true)
     } else {
-      win.setResizable(false)
-      win.setSize(300, 500)
-      win.setMaximizable(false)
+      win.setResizable(true)
+      win.setSize(720, 568)
+      win.setMaximizable(true)
     }
   })
 
